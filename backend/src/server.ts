@@ -10,12 +10,24 @@ import configureCORS from './lib/configureCors';
 import normalizePort from './lib/normalizePort';
 import router from './routes';
 import getConnectionString from './lib/getConnectionString';
+import Procedure from './models/Procedure';
 
 //Initialize envs
 dotenv.config();
 
 //Connect to DB
-mongoose.connect(getConnectionString());
+mongoose
+  .connect(
+    getConnectionString(),
+    {
+      db: process.env.DB_NAME || 'batch',
+      useNewUrlParser: true,
+      promiseLibrary: global.Promise,
+    },
+  )
+  .catch(err => {
+    console.error(err);
+  });
 
 const app = express();
 const server = http.createServer(app);
