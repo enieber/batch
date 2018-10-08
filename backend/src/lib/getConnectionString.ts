@@ -1,6 +1,6 @@
 function getConnectionString(
   user: string = process.env.DB_USER,
-  password: string = process.env.DB_PASSWORD,
+  password: string = process.env.DB_PASS,
   server: string = process.env.DB_SERVER,
 ): string {
   return `mongodb+srv://${user}:${password}@${server}/test?retryWrites=true`;
