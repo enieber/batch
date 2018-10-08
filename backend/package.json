@@ -3,5 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": {},
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.5.3",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "scripts": {
+    "dev": "nodemon app.js"
+  }
 }
