@@ -1,0 +1,13 @@
+{
+  "name": "rankCompiler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/enieber/rankCompiler.git",
+  "author": "Enieber Cunha <eniebercunha@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn dev:backend & yarn dev:frontend",
+    "dev:backend": "cd backend && yarn dev || cd ..",
+    "dev:frontend": "cd frontend && yarn dev || cd .."
+  }
+}
