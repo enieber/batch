@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Model, Document } from 'mongoose';
 
 /**
  * This is a procedure. Can be anything
@@ -48,6 +48,20 @@ export default class Procedure {
    * @memberof Procedure
    */
   static Model = model('Procedure', Procedure.Schema);
+
+  /**
+   * Return the model of the Object, the diference between this and @see{@link Model} it's that this function already returns the model filled
+   *
+   * @returns {Document} Returns the document filled
+   * @memberof Procedure
+   */
+  public getModel(): Document {
+    return new Procedure.Model({
+      name: this.name,
+      description: this.description,
+      position: this.position,
+    });
+  }
 
   //#endregion
 

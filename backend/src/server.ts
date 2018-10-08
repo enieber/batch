@@ -10,7 +10,6 @@ import configureCORS from './lib/configureCors';
 import normalizePort from './lib/normalizePort';
 import router from './routes';
 import getConnectionString from './lib/getConnectionString';
-import Procedure from './models/Procedure';
 
 //Initialize envs
 dotenv.config();
