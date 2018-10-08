@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import Item from './Item';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+import Item from './Item';
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -22,22 +21,25 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   margin: `0 0 ${grid}px 0`,
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
+  background: isDragging
+    ? 'lightgreen'
+    : 'grey',
 
   // styles we need to apply on draggables
   ...draggableStyle,
 });
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  background: isDraggingOver
+    ? 'lightblue'
+    : 'lightgrey',
   padding: grid,
   display: 'flex',
-  flex: 1, 
+  flex: 1,
   flexDirection: 'column',
   justifyContent: 'space-around',
   width: '50vw',
 });
-
 
 export default class List extends Component {
   constructor(props) {
@@ -45,7 +47,9 @@ export default class List extends Component {
     this.state = {
       items: [],
     };
-    this.onDragEnd = this.onDragEnd.bind(this);
+    this.onDragEnd = this
+      .onDragEnd
+      .bind(this);
   }
 
   onDragEnd(result) {
@@ -54,66 +58,50 @@ export default class List extends Component {
       return;
     }
 
-    const items = reorder(
-      this.state.items,
-      result.source.index,
-      result.destination.index
-    );
+    const items = reorder(this.state.items, result.source.index, result.destination.index);
 
-    this.setState({
-      items,
-    });
+    this.setState({ items });
   }
 
   async componentDidMount() {
     const response = await fetch('http://localhost:8088/rank');
     const responsJson = await response.json();
     const data = responsJson.data;
-    const dataSelected = data.map(item => {
-      return Object.assign({}, item,  {
-        ...item,
-        title: item.name
-      });
-    });
-    this.setState({
-       items: dataSelected,
-    });
+    const dataSelected = data.map(item => Object.assign({}, item, {
+      ...item,
+      title: item.name,
+    }));
+    this.setState({ items: dataSelected });
   }
 
   render() {
     return (
-      <DragDropContext
-        onDragEnd={this.onDragEnd}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            >
-              {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      <Item
-                        {...item}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+            <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+              {this
+                .state
+                .items
+                .map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+                      >
+                        <Item {...item} />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
-    )
+    );
   }
 }

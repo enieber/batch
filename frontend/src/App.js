@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import List from './list/List';
+import Add from './add';
 
 class App extends Component {
-  state = {
-    data: [],
-  }
-
   render() {
     return (
       <div className="App">
@@ -20,11 +17,12 @@ class App extends Component {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             flex: 1,
             backgroundColor: 'lightgrey',
           }}
         >
+          <Add />
           <List />
         </div>
       </div>
