@@ -65,17 +65,22 @@ export default class List extends Component {
     });
   }
 
-  componentDidMount() {
-    const {
-      data,
-    } = this.props;
+  async componentDidMount() {
+    const response = await fetch('http://localhost:8088/rank');
+    const responsJson = await response.json();
+    const data = responsJson.data;
+    const dataSelected = data.map(item => {
+      return Object.assign({}, item,  {
+        ...item,
+        title: item.name
+      });
+    });
     this.setState({
-      items: data,
+       items: dataSelected,
     });
   }
 
   render() {
-    
     return (
       <DragDropContext
         onDragEnd={this.onDragEnd}>
