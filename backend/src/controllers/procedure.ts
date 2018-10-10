@@ -42,12 +42,12 @@ export async function add(req: Request, res: Response) {
 
   const Model = Procedure.Model;
 
-  const highest = await returnHighest('position');
+  const highestPosition = await returnHighest('position');
 
   const procedure = new Model({
     name: data.name,
     description: data.description,
-    position: highest + 1,
+    position: highestPosition + 1,
   });
 
   const response = await procedure.save();
