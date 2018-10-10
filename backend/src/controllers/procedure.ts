@@ -66,7 +66,7 @@ export async function add(req: Request, res: Response) {
 export async function edit(req: Request, res: Response) {
   const data = req.body;
 
-  if (!!Object.keys(data).find(key => key === 'position')) {
+  if (_.findKey(data, 'position')) {
     const boom = Boom.badData(
       'You can not change position in this endpoint, use :id/position instead',
     );
