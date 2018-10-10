@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import Item from './Item';
 
 // a little function to help us with reordering the result
@@ -26,7 +26,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     : 'grey',
 
   // styles we need to apply on draggables
-  ...draggableStyle,
+  ...draggableStyle
 });
 
 const getListStyle = isDraggingOver => ({
@@ -38,14 +38,14 @@ const getListStyle = isDraggingOver => ({
   flex: 1,
   flexDirection: 'column',
   justifyContent: 'space-around',
-  width: '50vw',
+  width: '50vw'
 });
 
 export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      items: []
     };
     this.onDragEnd = this
       .onDragEnd
@@ -53,25 +53,38 @@ export default class List extends Component {
   }
 
   onDragEnd(result) {
-    // dropped outside the list
     if (!result.destination) {
       return;
     }
-
+    const id = result.draggableId;
+    const position = result.destination.index + 1;
+    fetch(`http://10.19.92.47:8088/api/procedure/${id}/position`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({position})
+    }).then(res => console.log(res));
     const items = reorder(this.state.items, result.source.index, result.destination.index);
+    this.setState({items});
+  }
 
-    this.setState({ items });
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.data !== this.props.data) {
+      this.setState({items: nextProps.data});
+      return true;
+    }
+    return true;
   }
 
   async componentDidMount() {
-    const response = await fetch('http://localhost:8088/rank');
-    const responsJson = await response.json();
-    const data = responsJson.data;
+    const {data} = this.props;
     const dataSelected = data.map(item => Object.assign({}, item, {
       ...item,
-      title: item.name,
+      title: item.name
     }));
-    this.setState({ items: dataSelected });
+    this.setState({items: dataSelected});
   }
 
   render() {
@@ -84,15 +97,14 @@ export default class List extends Component {
                 .state
                 .items
                 .map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                  <Draggable key={item._id} draggableId={item._id} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                      >
-                        <Item {...item} />
+                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                        <Item {...item}/>
                       </div>
                     )}
                   </Draggable>
