@@ -1,4 +1,5 @@
-import { Schema, model, Model, Document } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
+import * as Joi from 'joi';
 
 /**
  * This is a procedure. Can be anything
@@ -26,6 +27,12 @@ export default class Procedure {
     this._description = description;
     this._position = position;
   }
+
+  public static Validator = Joi.object().keys({
+    name: Joi.string(),
+    description: Joi.string(),
+    poistion: Joi.number(),
+  });
 
   //#region Mongo
 
