@@ -14,7 +14,7 @@ Currently we're working in backend and front-end at the same time.
 
 | Plan                        | Category           | Done?                  |
 | --------------------------- | ------------------ | ---------------------- |
-| Make Brazil great again? 😂 | Politians?         | ❌ (_Inpossible Task_) |
+| Make Brazil great again? 😂 | Politians?         | ❌ (_Impossible Task_) |
 | Document the Api            | Backend            | ❌ (_In progress_)     |
 | Finish the Procedure Route  | Backend            | ❌ (_In progress_)     |
 | List procedures             | Backend + Frontend | ✅                     |
