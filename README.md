@@ -12,10 +12,10 @@ Currently we're working in backend and front-end at the same time.
 
 ### I'll show you some of our plans:
 
-| Plan                         | Done?               |
-| ---------------------------- | ------------------- |
-| Make Brazil greate again? 😂 | [ ]                 |
-| Document the Api             | [ ] (_In progress_) |
-| Finish the front-end         | [ ] (_In progress_) |
+| Plan                        | Done?                   |
+| --------------------------- | ----------------------- |
+| Make Brazil great again? 😂 | [ ] (_Inpossible Task_) |
+| Document the Api            | [ ] (_In progress_)     |
+| Finish the front-end        | [ ] (_In progress_)     |
 
 Feel free to add more plans!
