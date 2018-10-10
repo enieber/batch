@@ -14,7 +14,7 @@ Currently we're working in backend and front-end at the same time.
 
 | Plan                        | Category           | Done?                  |
 | --------------------------- | ------------------ | ---------------------- |
-| Make Brazil great again? 😂 | Politians?         | ❌ (_Impossible Task_) |
+| Make Brazil great again? 😂 | Politicians?         | ❌ (_Impossible Task_) |
 | Document the Api            | Backend            | ❌ (_In progress_)     |
 | Finish the Procedure Route  | Backend            | ❌ (_In progress_)     |
 | List procedures             | Backend + Frontend | ✅                     |
@@ -22,3 +22,7 @@ Currently we're working in backend and front-end at the same time.
 | Remove procedure            | Backend + Frontend | ❌                     |
 
 Feel free to add more plans!
+
+## License
+
+We are currently under the [MIT license](https://raw.githubusercontent.com/enieber/batch/feature/add-license/LICENSE).
