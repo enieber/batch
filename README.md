@@ -12,10 +12,13 @@ Currently we're working in backend and front-end at the same time.
 
 ### I'll show you some of our plans:
 
-| Plan                        | Done?                   |
-| --------------------------- | ----------------------- |
-| Make Brazil great again? 😂 | [ ] (_Inpossible Task_) |
-| Document the Api            | [ ] (_In progress_)     |
-| Finish the front-end        | [ ] (_In progress_)     |
+| Plan                        | Category           | Done?                   |
+| --------------------------- | ------------------ | ----------------------- |
+| Make Brazil great again? 😂 | Politians?         | [ ] (_Inpossible Task_) |
+| Document the Api            | Backend            | [ ] (_In progress_)     |
+| Finish the Procedure Route  | Backend            | [ ] (_In progress_)     |
+| List procedures             | Backend + Frontend | [x]                     |
+| Edit procedures             | Backend + Frontend | [x]/[ ]                 |
+| Remove procedure            | Backend + Frontend | [ ]                     |
 
 Feel free to add more plans!
