@@ -18,7 +18,7 @@ function configureCORS(app: Express): void {
       return next();
     }
 
-    return res.send(204);
+    return res.sendStatus(204);
   });
 }
 
