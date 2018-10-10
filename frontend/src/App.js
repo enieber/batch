@@ -1,47 +1,50 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import logo from './logo.svg';
 import './App.css';
 import List from './list/List';
+import Add from './add';
 
 class App extends Component {
-  render() {
-    const data = [
-      {
-        id: 1,
-        title: 'Test',
-        description: 'test description',
-      },
-      {
-        id: 2,
-        title: 'Test 2',
-        description: 'test description',
-      },
-      {
-        id: 3,
-        title: 'Test 3',
-        description: 'test description',
-      }
-    ];
+  constructor(props) {
+    super(props);
+    this.state = {
+      newItem: {},
+      data: []
+    };
+  };
 
+  async componentDidMount() {
+    const response = await fetch('http://10.19.92.47:8088/api/procedure/');
+    const data = await response.json();
+    this.setState({data});
+  }
+
+  render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo"/>
           <h1 className="App-title">Rank de Tarefas</h1>
         </header>
         <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            flex: 1,
-            backgroundColor: 'lightgrey',
-          }}
-        >
-          <List
-            data={data}
-          />
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          flex: 1,
+          backgroundColor: 'lightgrey'
+        }}>
+          <Add
+            newItemAdd={(newItem) => {
+            this.setState({
+              data: [
+                ...this.state.data,
+                newItem
+              ]
+            });
+          }}/>
+          <List data={this.state.data}/>
         </div>
       </div>
     );
